@@ -62,10 +62,11 @@ helpers do
     message.scan(/\[Story(\d+)([^\]]*)\]/) do |tracker_trigger|
       @num_commits += 1
       story_id = tracker_trigger[0]
+      clean_message = message.gsub(/\[.*\]/,'')
 
       # post comment to the story
       RestClient.post(create_api_url(tracker_info[:project_id], story_id, '/notes'),
-                      "<note><text>(from [#{commit['id']}]) #{message}</text></note>", 
+                      "<note><text>#{message} [https://github.com/kkouddous/hapnin/commit/#{commit['id']}]</text></note>", 
                       tracker_api_headers(tracker_info[:api_token]))
     
       # See if we have a state change
