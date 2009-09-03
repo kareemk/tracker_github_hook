@@ -28,6 +28,9 @@ configure do
       raise "required configuration settings not found" unless project[1]['tracker_api_token'] && project[1]['tracker_project_id']    
       PROJECTS[project[1]['github_url']] = { :api_token => project[1]['tracker_api_token'], :project_id => project[1]['tracker_project_id'], :ref => project[1]['ref'] }
     end
+
+    tokens_path = File.expand_path(File.dirname(__FILE__) + '/tokens.yml')
+    PROJECTS['tokens'] = File.file?(tokens_path) ? YAML.load_file(tokens_path) : Hash.new
   rescue => e
     puts "Failed to startup: #{e.message}"
     puts "Ensure you have a config.yml in this directory with the'tracker_api_token' and 'tracker_project_id' keys/values set."
@@ -57,7 +60,6 @@ helpers do
   def process_commit(tracker_info, commit)
     # get commit message
     message = commit['message']
-
     # see if there is a Tracker story trigger, and if so, get story ID
     message.scan(/\[Story(\d+)([^\]]*)\]/) do |tracker_trigger|
       @num_commits += 1
@@ -67,7 +69,7 @@ helpers do
       # post comment to the story
       RestClient.post(create_api_url(tracker_info[:project_id], story_id, '/notes'),
                       "<note><text>#{clean_message} [https://github.com/kkouddous/hapnin/commit/#{commit['id']}]</text></note>", 
-                      tracker_api_headers(tracker_info[:api_token]))
+                      tracker_api_headers(PROJECTS['tokens'][commit['author']['email']] || tracker_info[:api_token]))
     
       # See if we have a state change
       state = tracker_trigger[1].match(/.*state:(\s?\w+).*/)
