@@ -15,7 +15,7 @@ payload={
     "forks": 2,
     "private": 1,
     "owner": {
-      "email": "chris@cobaltedge.com",
+      "email": "kareem@doubleonemedia.com",
       "name": "chris"
     } 
   },
@@ -24,7 +24,7 @@ payload={
       "id": "41a212ee83ca127e3c8cf465891ab7216a705f59",
       "url": "http://github.com/defunkt/github/commit/41a212ee83ca127e3c8cf465891ab7216a705f59",
       "author": {
-        "email": "chris@cobaltedge.com",
+        "email": "kareem@doubleonemedia.com",
         "name": "Chris Bailey" 
       },
       "message": "This one is a comment only 10 [Story294825] and [Story1234] 2nd line commit",
@@ -35,7 +35,7 @@ payload={
       "id": "41a212ee83ca321e3c8cf465891cb7216a705f59",
       "url": "http://github.com/defunkt/github/commit/41a212ee83ca127e3c8cf465891ab7216a705f59",
       "author": {
-        "email": "chris@cobaltedge.com",
+        "email": "kareem@doubleonemedia.com",
         "name": "Chris Bailey" 
       },
       "message": "This one does not have a story association",
@@ -46,7 +46,7 @@ payload={
       "id": "de8251ff97ee194a289832576287d6f8ad74e3d0",
       "url": "http://github.com/defunkt/github/commit/de8251ff97ee194a289832576287d6f8ad74e3d0",
       "author": {
-        "email": "chris@cobaltedge.com",
+        "email": "kareem@doubleonemedia.com",
         "name": "Chris Bailey" 
       },
       "message": "comment and state change 10 [Story294825 state:finished]",
