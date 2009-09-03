@@ -66,7 +66,7 @@ helpers do
 
       # post comment to the story
       RestClient.post(create_api_url(tracker_info[:project_id], story_id, '/notes'),
-                      "<note><text>#{message} [https://github.com/kkouddous/hapnin/commit/#{commit['id']}]</text></note>", 
+                      "<note><text>#{clean_message} [https://github.com/kkouddous/hapnin/commit/#{commit['id']}]</text></note>", 
                       tracker_api_headers(tracker_info[:api_token]))
     
       # See if we have a state change
